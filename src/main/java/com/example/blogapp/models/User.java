@@ -29,6 +29,6 @@ public class User {
         this.email = email;
     }
 
-   
+    // Constructors, getters, and setters (same as in your original code)
     
 }

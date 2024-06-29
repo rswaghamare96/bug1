@@ -8,13 +8,15 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int postId;
+
     private String title;
     private String content;
     private boolean approved;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private User user;
+    // Replace the User object with a simple userId
+    private int userId;
+
+    // Constructors, getters, and setters
 
     public int getPostId() {
         return postId;
@@ -48,14 +50,11 @@ public class Post {
         this.approved = approved;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
-
-    // Constructors, getters, and setters
-    
 }

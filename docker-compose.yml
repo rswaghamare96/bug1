@@ -1,10 +1,24 @@
 version: "3"
 services:
-  blogapp:
-    build: .
+  user-service:
+    image: blogappuserservice
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:h2:mem:testdb
+      - SPRING_DATASOURCE_URL=jdbc:h2:mem:userdb
       - SPRING_DATASOURCE_USERNAME=sa
-      - SPRING_DATASOURCE_PASSWORD=
+      - SPRING_DATASOURCE_PASSWORD=password
+
+  post-service:
+    image: blogapppostservice
+    ports:
+      - "8081:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:h2:mem:postdb
+      - SPRING_DATASOURCE_USERNAME=sa
+      - SPRING_DATASOURCE_PASSWORD=password
+      - USER_SERVICE_URL=http://user-service:8080
+      - LOGGING_LEVEL_ROOT=INFO
+      - LOGGING_LEVEL_COM_EXAMPLE_BLOGAPP=DEBUG
+    depends_on:
+      - user-service
