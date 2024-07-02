@@ -16,7 +16,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User getUserById(int userId) {
+    public User getAllUsers(int userId) {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
     }
